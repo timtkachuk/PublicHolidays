@@ -1,0 +1,27 @@
+﻿@model HolidayQueryViewModel
+
+<form asp-action="Index">
+    <div class="form-group">
+        <label>Ülke</label>
+        <select asp-for="CountryCode" class="custom-select">
+            @foreach (var country in ViewData["countries"] as IEnumerable<Country>)
+            {
+                <option value="@country.CountryCode">
+                    @country.FullName
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Yıl</label>
+        <select asp-for="Year" class="custom-select">
+            @foreach (var year in Enumerable.Range(DateTime.Today.Year, 10))
+            {
+                <option>@year</option>
+            }
+        </select>
+    </div>
+
+    <button class="btn btn-dark text-light">SHOW</button>
+</form>

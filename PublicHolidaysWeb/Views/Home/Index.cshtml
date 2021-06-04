@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Holiday>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<partial name="HolidayFormPartial" model="@ViewData["query"]" />
+
+
+<table class="table table table-striped ">
+    <thead>
+        <tr>
+            <th>Holidays</th>
+            <th>Date</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var holiday in Model)
+        {
+            <tr>
+                <td>
+                    @holiday.Name.SingleOrDefault(p => p.Lang == "en").Text
+                </td>
+                <td>
+                    @holiday.Date.NormalizedDate.ToLongDateString()
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
